@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background: #282c34;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+header p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+main {
+    padding: 2rem;
+}
+
+.gauge-container, .chart-container {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+footer {
+    background: #282c34;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
