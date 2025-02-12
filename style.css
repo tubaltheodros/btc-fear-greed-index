@@ -1,44 +1,90 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #f8f9fa; /* Light background */
+    color: #333; /* Dark text for readability */
+    line-height: 1.6;
 }
 
 header {
-    background: #282c34;
-    color: white;
     text-align: center;
-    padding: 1rem 0;
+    padding: 20px;
+    background-color: #ffffff; /* White background */
+    border-bottom: 2px solid #ddd; /* Subtle border */
 }
 
-header h1 {
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Space between logos and title */
+    padding: 20px 0;
+}
+
+.title-container .title h1 {
+    font-size: 2.5rem;
     margin: 0;
-    font-size: 2rem;
+    color: #444;
 }
 
-header p {
-    margin: 0.5rem 0;
+.title-container .title p {
     font-size: 1rem;
-    color: #ccc;
+    color: #666; /* Subtle gray for description text */
+    margin: 10px 0 0;
 }
 
-main {
-    padding: 2rem;
+.btc-logo {
+    width: 50px;
+    height: 50px;
 }
 
-.gauge-container, .chart-container {
-    margin: 2rem 0;
-    text-align: center;
+/* Section Styles */
+/* Section Styles */
+.content-section {
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 920px; /* Increased from 800px by 15% */
 }
 
+
+.content-section h2 {
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.content-section p {
+    margin-bottom: 10px;
+}
+
+.content-section ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.content-section li {
+    margin-bottom: 8px;
+}
+
+/* Iframe Styles */
+iframe {
+    display: block;
+    margin: 20px auto;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+/* Footer Styles */
 footer {
-    background: #282c34;
-    color: white;
     text-align: center;
-    padding: 1rem 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    border-top: 2px solid #ddd;
+    color: #666;
+    font-size: 0.9rem;
 }

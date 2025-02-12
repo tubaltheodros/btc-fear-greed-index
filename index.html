@@ -3,16 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTC Fear & Greed Index</title>
+    <title>Bitcoin Fear and Greed Index</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link your CSS file -->
 </head>
 <body>
-    <h1>BTC Fear & Greed Index</h1>
+    <header class="header">
+        <div class="title-container">
+            <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin Logo" class="btc-logo">
+            <div class="title">
+                <h1>Bitcoin Fear and Greed Index</h1>
+                <p>Crypto Fear and Greed Index is based on volatility, social media sentiments, surveys, market momentum, and more.</p>
+            </div>
+            <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin Logo" class="btc-logo">
+        </div>
+    </header>
 
-    <h2>Fear & Greed Meter</h2>
-    <iframe src="line_index.html" width="100%" height="500" frameborder="0"></iframe>
+    <main>
+        <!-- Section: Visualizations -->
+        <section class="content-section">
+            <h2>Sentiment Trend Over Time</h2>
+            <iframe src="line_index.html" width="100%" height="500" frameborder="0"></iframe>
+            
+            <h2>Fear & Greed Meter</h2>
+            <iframe src="index_index.html" width="100%" height="500" frameborder="0"></iframe>
+        </section>
+        <!-- Section: Why Measure Fear and Greed -->
+        <section class="content-section">
+            <h2>Why Measure Fear and Greed?</h2>
+            <p>The crypto market behavior is highly emotional. Greedy investors can inflate the market, while fear can drive irrational sell-offs. With this index, we aim to help you make informed decisions and avoid emotional overreactions.</p>
+            <ul>
+                <li><strong>Extreme fear</strong>: May signal a buying opportunity.</li>
+                <li><strong>Extreme greed</strong>: May indicate the market is overheated.</li>
+            </ul>
+        </section>
 
-    <h2>Sentiment Trend Over Time</h2>
-    <iframe src="index_index.html" width="100%" height="500" frameborder="0"></iframe>
+        <!-- Section: Data Sources -->
+        <section class="content-section">
+            <h2>Data Sources</h2>
+            <p>The Bitcoin Fear and Greed Index aggregates data from the following sources:</p>
+            <ul>
+                <li><strong>Volatility (25%)</strong>: Measures recent price swings and compares them to historical averages.</li>
+                <li><strong>Market Momentum/Volume (25%)</strong>: Tracks buy/sell activity to gauge bullish or bearish sentiment.</li>
+                <li><strong>Social Media (15%)</strong>: Analyzes mentions and sentiment across platforms like Reddit and Twitter.</li>
+                <li><strong>Dominance (10%)</strong>: Tracks Bitcoin’s dominance within the crypto market.</li>
+                <li><strong>Trends (10%)</strong>: Tracks search interest in Bitcoin-related terms.</li>
+            </ul>
+        </section>
+    </main>
 
+    <footer>
+        <p>&copy; 2025 Bitcoin Fear and Greed Index. All rights reserved.</p>
+    </footer>
 </body>
 </html>
