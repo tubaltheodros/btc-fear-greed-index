@@ -1,2 +1,152 @@
-zsh: command not found: @reboot
-zsh: command not found: 0
+
+
+
+
+
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/tubaltheodros/Desktop/btc-fear-greed-index/Bitcoin_FG_Index.py': [Errno 2] No such file or directory
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/tubaltheodros/Desktop/btc-fear-greed-index/Bitcoin_FG_Index.py': [Errno 2] No such file or directory
+Traceback (most recent call last):
+  File "/Users/tubaltheodros/Desktop/btc-fear-greed-index/Bticoin_FG_Index.py", line 13, in <module>
+    import praw
+ModuleNotFoundError: No module named 'praw'
+zsh: command not found: 5
+From https://github.com/tubaltheodros/btc-fear-greed-index
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+[main 425c1f5] Updated sentiment data and visualizations
+ Committer: tubaltheodros <tubaltheodros@Tubals-MacBook-Air-2.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To https://github.com/tubaltheodros/btc-fear-greed-index.git
+   00e1672..425c1f5  main -> main
+Reddit Bitcoin Sentiment Score: 57
+Final Volatility Sentiment Score: 50
+Reddit Bitcoin Sentiment Score: 57
+Fear and Greed Index: 50
+Reddit Sentiment: 57
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.40 (0 = Negative, 100 = Positive)
+✅ Historical data cleaned up to current date: 2025-02-13
+Reddit Bitcoin Sentiment Score: 57
+Fear and Greed Index: 50
+Reddit Sentiment: 57
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.40 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-13: 51
+✅ line_index.html has been updated.
+Reddit Bitcoin Sentiment Score: 57
+Fear and Greed Index: 50
+Reddit Sentiment: 57
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.40 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-13: 51
+✅ line_index.html has been updated.
+Reddit Bitcoin Sentiment Score: 57
+Fear and Greed Index: 50
+Reddit Sentiment: 57
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.40 (0 = Negative, 100 = Positive)
+line_index.html has been created.
+✅ Historical data cleaned up to current date: 2025-02-13
+Reddit Bitcoin Sentiment Score: 57
+Fear and Greed Index: 50
+Reddit Sentiment: 57
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.40 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-13: 51
+✅ line_index.html has been updated.
+✅ Successfully pushed updates to GitHub.
+cat /Users/tubaltheodros/Desktop/btc-fear-greed-index/cron.log
+
+
+
+
+From https://github.com/tubaltheodros/btc-fear-greed-index
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+[main bcbc73a] Updated sentiment data and visualizations
+ Committer: tubaltheodros <tubaltheodros@Tubals-MacBook-Air-2.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To https://github.com/tubaltheodros/btc-fear-greed-index.git
+   425c1f5..bcbc73a  main -> main
+Reddit Bitcoin Sentiment Score: 57
+Error fetching CoinGecko volatility: name 'np' is not defined
+Final Volatility Sentiment Score: 50
+Reddit Bitcoin Sentiment Score: 57
+Start Price: 96185.27, End Price: 96196.07, Change: 0.01%
+Highest Price: 98098.08, Lowest Price: 94119.79
+Price Volatility (High-Low %): 0.0411
+Fear and Greed Index: 50
+Reddit Sentiment: 57
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.40 (0 = Negative, 100 = Positive)
+✅ Historical data cleaned up to current date: 2025-02-13
+Reddit Bitcoin Sentiment Score: 57
+Start Price: 96185.27, End Price: 96196.07, Change: 0.01%
+Highest Price: 98098.08, Lowest Price: 94119.79
+Price Volatility (High-Low %): 0.0411
+Fear and Greed Index: 50
+Reddit Sentiment: 57
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.40 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-13: 51
+✅ line_index.html has been updated.
+Reddit Bitcoin Sentiment Score: 57
+Start Price: 96185.27, End Price: 96196.07, Change: 0.01%
+Highest Price: 98098.08, Lowest Price: 94119.79
+Price Volatility (High-Low %): 0.0411
+Fear and Greed Index: 50
+Reddit Sentiment: 57
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.40 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-13: 51
+✅ line_index.html has been updated.
+Reddit Bitcoin Sentiment Score: 57
+Start Price: 96185.27, End Price: 96196.07, Change: 0.01%
+Highest Price: 98098.08, Lowest Price: 94119.79
+Price Volatility (High-Low %): 0.0411
+Fear and Greed Index: 50
+Reddit Sentiment: 57
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.40 (0 = Negative, 100 = Positive)
+line_index.html has been created.
+✅ Historical data cleaned up to current date: 2025-02-13
+Reddit Bitcoin Sentiment Score: 57
+Fear and Greed Index: 50
+Reddit Sentiment: 57
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.40 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-13: 51
+✅ line_index.html has been updated.
+✅ Successfully pushed updates to GitHub.

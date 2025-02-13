@@ -491,7 +491,7 @@ def plot_fear_greed_gauge(sentiment_score):
         height=400,
         margin=dict(t=120, b=40, l=40, r=40)
     )
-    fig.write_html("/Users/tubaltheodros/Downloads/index_index.html")
+    fig.write_html("/Users/tubaltheodros/Desktop/btc-fear-greed-index/index_index.html")
     print("line_index.html has been created.")
     fig.show()
 
