@@ -289,6 +289,53 @@ def save_sentiment_to_csv(score):
         pd.DataFrame([sentiment_data]).to_csv("sentiment_scores.csv", index=False)
         print(f"✅ Created new file with custom sentiment score for {today}: {score}")
 
+import pandas as pd
+from datetime import datetime
+
+# def save_sentiment_to_csv(score):
+#     """
+#     Save today's custom calculation, never overwriting historical data
+#     """
+#     # Define the absolute path to sentiment_scores.csv
+#     csv_path = "/Users/tubaltheodros/Desktop/btc-fear-greed-index/sentiment_scores.csv"
+    
+#     # Get today's date
+#     today = datetime.now().strftime("%Y-%m-%d")
+    
+#     # Prepare today's sentiment data
+#     sentiment_data = {
+#         "Date": today,
+#         "Sentiment Score": score,
+#         "Source": "custom_calculation"
+#     }
+
+#     try:
+#         # Load the existing data from the absolute file path
+#         df = pd.read_csv(csv_path)
+#         df["Date"] = pd.to_datetime(df["Date"]).dt.strftime("%Y-%m-%d")  # Ensure date format consistency
+        
+#         # Remove any existing entry for today's date
+#         df = df[df["Date"] != today]
+        
+#         # Append the new sentiment data
+#         new_data = pd.DataFrame([sentiment_data])
+#         df = pd.concat([df, new_data], ignore_index=True)
+        
+#         # Sort by date
+#         df["Date"] = pd.to_datetime(df["Date"])
+#         df = df.sort_values("Date")
+        
+#         # Save back to the absolute path
+#         df.to_csv(csv_path, index=False)
+#         print(f"✅ Custom Sentiment Score saved for {today}: {score}")
+#     except FileNotFoundError:
+#         # Create a new CSV file if it doesn't exist
+#         pd.DataFrame([sentiment_data]).to_csv(csv_path, index=False)
+#         print(f"✅ Created new file with custom sentiment score for {today}: {score}")
+#     except Exception as e:
+#         # Handle any unexpected errors
+#         print(f"❌ Failed to save sentiment score: {e}")
+
 
 # In[21]:
 
@@ -521,7 +568,7 @@ if __name__ == "__main__":
     
     # Step 4: Generate updated visualizations
     plot_interactive_sentiment()  # Saves the updated plot to a file, like index.html
-
+    plot_fear_greed_gauge(today_sentiment_score)
     # Step 5: Push updated files to GitHub
     
     

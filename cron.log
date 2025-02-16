@@ -150,3 +150,78 @@ Weighted Combined Sentiment Score: 51.40 (0 = Negative, 100 = Positive)
 ✅ Custom Sentiment Score saved for 2025-02-13: 51
 ✅ line_index.html has been updated.
 ✅ Successfully pushed updates to GitHub.
+From https://github.com/tubaltheodros/btc-fear-greed-index
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+[main aeb87e4] Updated sentiment data and visualizations
+ Committer: tubaltheodros <tubaltheodros@Tubals-MacBook-Air-2.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+To https://github.com/tubaltheodros/btc-fear-greed-index.git
+   5d1e9e0..aeb87e4  main -> main
+Reddit Bitcoin Sentiment Score: 56
+Error fetching CoinGecko volatility: name 'np' is not defined
+Final Volatility Sentiment Score: 50
+Reddit Bitcoin Sentiment Score: 56
+Start Price: 97041.53, End Price: 97531.92, Change: 0.51%
+Highest Price: 98623.62, Lowest Price: 96353.26
+Price Volatility (High-Low %): 0.0233
+Fear and Greed Index: 50
+Reddit Sentiment: 56
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.20 (0 = Negative, 100 = Positive)
+✅ Historical data cleaned up to current date: 2025-02-15
+Reddit Bitcoin Sentiment Score: 56
+Start Price: 97041.53, End Price: 97531.92, Change: 0.51%
+Highest Price: 98623.62, Lowest Price: 96353.26
+Price Volatility (High-Low %): 0.0233
+Fear and Greed Index: 50
+Reddit Sentiment: 56
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.20 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-15: 51
+✅ line_index.html has been updated.
+Reddit Bitcoin Sentiment Score: 56
+Start Price: 97041.53, End Price: 97531.92, Change: 0.51%
+Highest Price: 98623.62, Lowest Price: 96353.26
+Price Volatility (High-Low %): 0.0233
+Fear and Greed Index: 50
+Reddit Sentiment: 56
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.20 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-15: 51
+✅ line_index.html has been updated.
+Reddit Bitcoin Sentiment Score: 56
+Start Price: 97041.53, End Price: 97531.92, Change: 0.51%
+Highest Price: 98623.62, Lowest Price: 96353.26
+Price Volatility (High-Low %): 0.0233
+Fear and Greed Index: 50
+Reddit Sentiment: 56
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.20 (0 = Negative, 100 = Positive)
+line_index.html has been created.
+✅ Historical data cleaned up to current date: 2025-02-15
+Reddit Bitcoin Sentiment Score: 56
+Fear and Greed Index: 50
+Reddit Sentiment: 56
+Volatility Sentiment: 50
+Alternative.me Sentiment: 50
+Weighted Combined Sentiment Score: 51.20 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-15: 51
+✅ line_index.html has been updated.
+line_index.html has been created.
+✅ Successfully pushed updates to GitHub.
