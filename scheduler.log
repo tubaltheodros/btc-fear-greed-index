@@ -148,3 +148,21 @@ Weighted Combined Sentiment Score: 52.60 (0 = Negative, 100 = Positive)
 ✅ line_index.html has been updated.
 line_index.html has been created.
 ✅ Successfully pushed updates to GitHub.
+Fatal Python error: init_sys_streams: can't initialize sys standard streams
+Python runtime state: core initialized
+OSError: [Errno 9] Bad file descriptor
+
+Current thread 0x00000001f803b840 (most recent call first):
+  <no Python frame>
+Fatal Python error: init_sys_streams: can't initialize sys standard streams
+Python runtime state: core initialized
+OSError: [Errno 9] Bad file descriptor
+
+Current thread 0x00000001f803b840 (most recent call first):
+  <no Python frame>
+Fatal Python error: init_sys_streams: can't initialize sys standard streams
+Python runtime state: core initialized
+OSError: [Errno 9] Bad file descriptor
+
+Current thread 0x00000001f803b840 (most recent call first):
+  <no Python frame>

@@ -1,7 +1,14 @@
+#!/usr/bin/env python3
+import sys
+import os
+
+# Redirect standard streams at the very beginning
+sys.stdout = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'stdout.log'), 'a')
+sys.stderr = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'stderr.log'), 'a')
+
 import schedule
 import time
 import subprocess
-import sys
 from pathlib import Path
 import datetime
 from datetime import datetime, timedelta
@@ -37,11 +44,10 @@ def check_missed_run():
             f.write(datetime.now().isoformat())
 
 # Schedule for midnight
-schedule.every().day.at("00:00").do(run_btc_script)
+schedule.every().day.at("08:30").do(run_btc_script)
 
 print(f"Scheduler started at {datetime.now()}")
 print("Script will run at midnight every day or upon wake if midnight was missed")
-print("Press Ctrl+C to stop")
 
 # Check if we missed the midnight run when starting up
 check_missed_run()

@@ -1,0 +1,150 @@
+From https://github.com/tubaltheodros/btc-fear-greed-index
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+[main 7e70139] Updated sentiment data and visualizations
+ Committer: tubaltheodros <tubaltheodros@wifi-10-40-6-10.wifi.berkeley.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 3 files changed, 3 insertions(+), 2 deletions(-)
+To https://github.com/tubaltheodros/btc-fear-greed-index.git
+   844032d..7e70139  main -> main
+Reddit Bitcoin Sentiment Score: 53
+Error fetching CoinGecko volatility: name 'np' is not defined
+Final Volatility Sentiment Score: 50
+Reddit Bitcoin Sentiment Score: 53
+Start Price: 96135.42, End Price: 95095.15, Change: -1.08%
+Highest Price: 96663.10, Lowest Price: 93434.53
+Price Volatility (High-Low %): 0.0338
+Fear and Greed Index: 47
+Reddit Sentiment: 53
+Volatility Sentiment: 49
+Alternative.me Sentiment: 47
+Weighted Combined Sentiment Score: 48.80 (0 = Negative, 100 = Positive)
+✅ Historical data cleaned up to current date: 2025-02-18
+Reddit Bitcoin Sentiment Score: 53
+Start Price: 96135.42, End Price: 95095.15, Change: -1.08%
+Highest Price: 96663.10, Lowest Price: 93434.53
+Price Volatility (High-Low %): 0.0338
+Fear and Greed Index: 47
+Reddit Sentiment: 53
+Volatility Sentiment: 49
+Alternative.me Sentiment: 47
+Weighted Combined Sentiment Score: 48.80 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-18: 49
+✅ line_index.html has been updated.
+Reddit Bitcoin Sentiment Score: 53
+Start Price: 96135.42, End Price: 95095.15, Change: -1.08%
+Highest Price: 96663.10, Lowest Price: 93434.53
+Price Volatility (High-Low %): 0.0338
+Fear and Greed Index: 47
+Reddit Sentiment: 53
+Volatility Sentiment: 49
+Alternative.me Sentiment: 47
+Weighted Combined Sentiment Score: 48.80 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-18: 49
+✅ line_index.html has been updated.
+Reddit Bitcoin Sentiment Score: 50
+Start Price: 96135.42, End Price: 95095.15, Change: -1.08%
+Highest Price: 96663.10, Lowest Price: 93434.53
+Price Volatility (High-Low %): 0.0338
+Fear and Greed Index: 47
+Reddit Sentiment: 50
+Volatility Sentiment: 49
+Alternative.me Sentiment: 47
+Weighted Combined Sentiment Score: 48.20 (0 = Negative, 100 = Positive)
+line_index.html has been created.
+✅ Historical data cleaned up to current date: 2025-02-18
+Reddit Bitcoin Sentiment Score: 53
+Fear and Greed Index: 47
+Reddit Sentiment: 53
+Volatility Sentiment: 50
+Alternative.me Sentiment: 47
+Weighted Combined Sentiment Score: 49.10 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-18: 49
+✅ line_index.html has been updated.
+line_index.html has been created.
+✅ Successfully pushed updates to GitHub.
+From https://github.com/tubaltheodros/btc-fear-greed-index
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+[main eb37432] Updated sentiment data and visualizations
+ Committer: tubaltheodros <tubaltheodros@wifi-10-40-7-238.wifi.berkeley.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 3 files changed, 3 insertions(+), 2 deletions(-)
+To https://github.com/tubaltheodros/btc-fear-greed-index.git
+   7e70139..eb37432  main -> main
+Reddit Bitcoin Sentiment Score: 54
+Error fetching CoinGecko volatility: name 'np' is not defined
+Final Volatility Sentiment Score: 50
+Reddit Bitcoin Sentiment Score: 54
+Start Price: 95372.84, End Price: 96557.34, Change: 1.24%
+Highest Price: 96604.04, Lowest Price: 95017.96
+Price Volatility (High-Low %): 0.0165
+Fear and Greed Index: 44
+Reddit Sentiment: 54
+Volatility Sentiment: 50
+Alternative.me Sentiment: 44
+Weighted Combined Sentiment Score: 47.80 (0 = Negative, 100 = Positive)
+✅ Historical data cleaned up to current date: 2025-02-19
+Reddit Bitcoin Sentiment Score: 54
+Start Price: 95372.84, End Price: 96557.34, Change: 1.24%
+Highest Price: 96604.04, Lowest Price: 95017.96
+Price Volatility (High-Low %): 0.0165
+Fear and Greed Index: 44
+Reddit Sentiment: 54
+Volatility Sentiment: 50
+Alternative.me Sentiment: 44
+Weighted Combined Sentiment Score: 47.80 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-19: 48
+✅ line_index.html has been updated.
+Reddit Bitcoin Sentiment Score: 54
+Start Price: 95372.84, End Price: 96557.34, Change: 1.24%
+Highest Price: 96604.04, Lowest Price: 95017.96
+Price Volatility (High-Low %): 0.0165
+Fear and Greed Index: 44
+Reddit Sentiment: 54
+Volatility Sentiment: 50
+Alternative.me Sentiment: 44
+Weighted Combined Sentiment Score: 47.80 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-19: 48
+✅ line_index.html has been updated.
+Reddit Bitcoin Sentiment Score: 54
+Start Price: 95372.84, End Price: 96557.34, Change: 1.24%
+Highest Price: 96604.04, Lowest Price: 95017.96
+Price Volatility (High-Low %): 0.0165
+Fear and Greed Index: 44
+Reddit Sentiment: 54
+Volatility Sentiment: 50
+Alternative.me Sentiment: 44
+Weighted Combined Sentiment Score: 47.80 (0 = Negative, 100 = Positive)
+line_index.html has been created.
+✅ Historical data cleaned up to current date: 2025-02-19
+Reddit Bitcoin Sentiment Score: 54
+Fear and Greed Index: 44
+Reddit Sentiment: 54
+Volatility Sentiment: 50
+Alternative.me Sentiment: 44
+Weighted Combined Sentiment Score: 47.80 (0 = Negative, 100 = Positive)
+✅ Custom Sentiment Score saved for 2025-02-19: 48
+✅ line_index.html has been updated.
+line_index.html has been created.
+✅ Successfully pushed updates to GitHub.

@@ -10,10 +10,31 @@
 # In[11]:
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import praw
 from textblob import TextBlob
 import pandas as pd
 import requests
+import numpy as np
+from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
+import os
+import plotly.express as px
+import plotly.graph_objects as go
+import time
 
 # Initialize Reddit API
 reddit = praw.Reddit(
@@ -61,20 +82,7 @@ def fetch_reddit_sentiment():
     print(f"Reddit Bitcoin Sentiment Score: {sentiment_score}")
     return sentiment_score
 
-# Call the function to calculate the sentiment
-(fetch_reddit_sentiment())
-
-
-
-# In[100]:
-
-
-# Volatility Index
-
-
-# In[15]:
-
-
+# Volatility Index function
 def fetch_volatility_sentiment():
     try:
         # Fetch Bitcoin market data from CoinGecko (24-hour price data)
@@ -90,7 +98,7 @@ def fetch_volatility_sentiment():
                 print("No price data available.")
                 return 50  # Neutral if data is missing
 
-            # **Calculate High-Low Range Volatility**
+            # Calculate High-Low Range Volatility
             highest_price = max(prices)
             lowest_price = min(prices)
             mean_price = np.mean(prices)
@@ -105,11 +113,11 @@ def fetch_volatility_sentiment():
             print(f"Highest Price: {highest_price:.2f}, Lowest Price: {lowest_price:.2f}")
             print(f"Price Volatility (High-Low %): {price_volatility:.4f}")
 
-            # **Updated Volatility Thresholds**
-            high_volatility = 0.06  # **6% = high volatility**
-            low_volatility = 0.01   # **1% = low volatility**
+            # Updated Volatility Thresholds
+            high_volatility = 0.06  # 6% = high volatility
+            low_volatility = 0.01   # 1% = low volatility
 
-            # **Sentiment Calculation**
+            # Sentiment Calculation
             if price_volatility > high_volatility:
                 if price_change < 0:
                     return int(0 + 40 * (1 - min(price_volatility / high_volatility, 1)))  # High Fear
@@ -128,25 +136,7 @@ def fetch_volatility_sentiment():
     
     return 50  # Default neutral sentiment if API call fails
 
-# Call and print the result
-sentiment_score = fetch_volatility_sentiment()
-print(f"Final Volatility Sentiment Score: {sentiment_score}")
-
-
-# In[16]:
-
-
-
-# In[17]:
-
-
-from bs4 import BeautifulSoup
-import requests
-
-from bs4 import BeautifulSoup
-import requests
-import time
-
+# Fear and Greed Index
 def fetch_fear_greed_index(retries=3, delay=5):
     """
     Fetch the Fear and Greed Index from the alternative.me website.
@@ -175,19 +165,14 @@ def fetch_fear_greed_index(retries=3, delay=5):
                 print("❌ Error fetching Fear and Greed Index after multiple attempts.")
                 return 50  # Default neutral value if retries fail
 
-
-# In[18]:
-
-
-import numpy as np
-
+# Calculate combined sentiment
 def calculate_combined_sentiment():
     # Fetch sentiment scores
-    reddit_sentiment = fetch_reddit_sentiment()  # This now returns a numeric score
+    reddit_sentiment = fetch_reddit_sentiment()
     volatility_sentiment = fetch_volatility_sentiment()
     alternative_me_sentiment = fetch_fear_greed_index()
 
-    # Apply weights (35% Alternative.me, 15% Volatility, 15% Reddit)
+    # Apply weights (50% Alternative.me, 30% Volatility, 20% Reddit)
     combined_sentiment_score = (
         (alternative_me_sentiment * 0.5) +
         (volatility_sentiment * 0.3) +
@@ -201,25 +186,13 @@ def calculate_combined_sentiment():
     print(f"Weighted Combined Sentiment Score: {combined_sentiment_score:.2f} (0 = Negative, 100 = Positive)")
 
     rounded_score = round(combined_sentiment_score)
-
     return rounded_score
 
-# Call the function
-calculate_combined_sentiment()
-
-
-# In[19]:
-
-
-import requests
-import pandas as pd
-from datetime import datetime
-
-# 📌 Step 1: Fetch historical sentiment from Alternative.me
-def fetch_historical_sentiment(cutoff_date):
+# Fetch historical sentiment data
+def fetch_historical_sentiment(start_date=None):
     """
-    Fetch historical data only up to the cutoff date.
-    After cutoff_date, only custom calculations will be used.
+    Fetch historical data from alternative.me.
+    If start_date is provided, only fetch data after that date.
     """
     url = "https://api.alternative.me/fng/?limit=365"
     response = requests.get(url)
@@ -229,8 +202,8 @@ def fetch_historical_sentiment(cutoff_date):
         sentiment_data = []
         for entry in data:
             date = datetime.utcfromtimestamp(int(entry["timestamp"])).strftime("%Y-%m-%d")
-            # Only include data before the cutoff date
-            if date < cutoff_date:
+            # Filter by start_date if provided
+            if start_date is None or date >= start_date:
                 score = int(entry["value"])
                 sentiment_data.append({
                     "Date": date, 
@@ -243,19 +216,42 @@ def fetch_historical_sentiment(cutoff_date):
     else:
         print(f"Error fetching Alternative.me data: {response.status_code}")
         return None
-    
-def initialize_historical_data(cutoff_date):
+
+# Initialize historical data
+def initialize_historical_data():
     """
-    One-time function to initialize the CSV with historical data up to cutoff_date.
-    Should only be run once when setting up the system.
+    Function to initialize the CSV with historical data from alternative.me.
     """
-    df = fetch_historical_sentiment(cutoff_date)
+    df = fetch_historical_sentiment()
     if df is not None:
         df.to_csv("sentiment_scores.csv", index=False)
-        print(f"✅ Historical data initialized up to {cutoff_date}")
+        print(f"✅ Historical data initialized with {len(df)} records")
     else:
         print("❌ Failed to initialize historical data")
 
+# Clean historical data
+def clean_historical_data():
+    """
+    Ensure historical data has no future dates and is properly formatted.
+    """
+    current_date = datetime.now()
+    try:
+        df = pd.read_csv("sentiment_scores.csv")
+        df["Date"] = pd.to_datetime(df["Date"])
+        df = df[df["Date"] <= current_date]
+        
+        # Sort by date to ensure chronological order
+        df = df.sort_values("Date")
+        
+        # Remove duplicates, keeping the latest entry for each date
+        df = df.drop_duplicates(subset="Date", keep="last")
+        
+        df.to_csv("sentiment_scores.csv", index=False)
+        print(f"✅ Historical data cleaned up to current date: {current_date.strftime('%Y-%m-%d')}")
+    except FileNotFoundError:
+        print("❌ No historical data file found. Starting fresh.")
+
+# Save sentiment to CSV
 def save_sentiment_to_csv(score):
     """
     Save today's custom calculation, never overwriting historical data
@@ -289,87 +285,7 @@ def save_sentiment_to_csv(score):
         pd.DataFrame([sentiment_data]).to_csv("sentiment_scores.csv", index=False)
         print(f"✅ Created new file with custom sentiment score for {today}: {score}")
 
-import pandas as pd
-from datetime import datetime
-
-# def save_sentiment_to_csv(score):
-#     """
-#     Save today's custom calculation, never overwriting historical data
-#     """
-#     # Define the absolute path to sentiment_scores.csv
-#     csv_path = "/Users/tubaltheodros/Desktop/btc-fear-greed-index/sentiment_scores.csv"
-    
-#     # Get today's date
-#     today = datetime.now().strftime("%Y-%m-%d")
-    
-#     # Prepare today's sentiment data
-#     sentiment_data = {
-#         "Date": today,
-#         "Sentiment Score": score,
-#         "Source": "custom_calculation"
-#     }
-
-#     try:
-#         # Load the existing data from the absolute file path
-#         df = pd.read_csv(csv_path)
-#         df["Date"] = pd.to_datetime(df["Date"]).dt.strftime("%Y-%m-%d")  # Ensure date format consistency
-        
-#         # Remove any existing entry for today's date
-#         df = df[df["Date"] != today]
-        
-#         # Append the new sentiment data
-#         new_data = pd.DataFrame([sentiment_data])
-#         df = pd.concat([df, new_data], ignore_index=True)
-        
-#         # Sort by date
-#         df["Date"] = pd.to_datetime(df["Date"])
-#         df = df.sort_values("Date")
-        
-#         # Save back to the absolute path
-#         df.to_csv(csv_path, index=False)
-#         print(f"✅ Custom Sentiment Score saved for {today}: {score}")
-#     except FileNotFoundError:
-#         # Create a new CSV file if it doesn't exist
-#         pd.DataFrame([sentiment_data]).to_csv(csv_path, index=False)
-#         print(f"✅ Created new file with custom sentiment score for {today}: {score}")
-#     except Exception as e:
-#         # Handle any unexpected errors
-#         print(f"❌ Failed to save sentiment score: {e}")
-
-
-# In[21]:
-
-
-import pandas as pd
-import plotly.express as px
-from datetime import datetime, timedelta
-
-# 📌 Step 1: Ensure Historical Data Has No Future Dates
-def clean_historical_data():
-    current_date = datetime.now()
-    try:
-        df = pd.read_csv("sentiment_scores.csv")
-        df["Date"] = pd.to_datetime(df["Date"])
-        df = df[df["Date"] <= current_date]
-        
-        # Sort by date to ensure chronological order
-        df = df.sort_values("Date")
-        
-        # Remove duplicates, keeping the latest entry for each date
-        df = df.drop_duplicates(subset="Date", keep="last")
-        
-        df.to_csv("sentiment_scores.csv", index=False)
-        print(f"✅ Historical data cleaned up to current date: {current_date.strftime('%Y-%m-%d')}")
-    except FileNotFoundError:
-        print("❌ No historical data file found. Starting fresh.")
-        
-
-
-# 📌 Step 3: Create the Interactive Line Chart
-
-import plotly.express as px
-from datetime import timedelta
-
+# Plot interactive sentiment chart
 def plot_interactive_sentiment():
     try:
         # Load historical data
@@ -377,7 +293,7 @@ def plot_interactive_sentiment():
         df["Date"] = pd.to_datetime(df["Date"])  # Convert Date column to datetime
         df = df.sort_values(by="Date")  # Sort data in chronological order
 
-        # 📈 Create the line chart
+        # Create the line chart
         fig = px.line(
             df,
             x="Date",
@@ -433,58 +349,17 @@ def plot_interactive_sentiment():
         )
 
         # Save the chart to HTML
-        fig.write_html("/Users/tubaltheodros/Desktop/btc-fear-greed-index/line_index.html")
+        fig.write_html("line_index.html")
         print("✅ line_index.html has been updated.")
+        
+        # Also display the chart if in an interactive environment
         fig.show()
 
     except Exception as e:
         print(f"❌ Error plotting sentiment: {e}")
         print(f"Detailed error: {str(e)}")
 
-
-
-
-# 📌 Step 4: Main Script
-if __name__ == "__main__":
-    # Clean historical data
-    clean_historical_data()
-    
-    # Calculate today's sentiment score using your formula
-    today_sentiment_score = calculate_combined_sentiment()
-
-    # Save today's sentiment score (if it's a new calendar day)
-    save_sentiment_to_csv(today_sentiment_score)
-
-    # Plot the interactive sentiment chart
-    plot_interactive_sentiment()
-
-
-# 📌 Step 4: Main Script
-# 📌 Step 4: Main Script
-if __name__ == "__main__":
-    # Set your cutoff date here
-    CUTOFF_DATE = "2024-02-12"  # Or whatever date you want to start your custom calculations
-    
-    # Check if we need to initialize historical data
-    try:
-        pd.read_csv("sentiment_scores.csv")
-    except FileNotFoundError:
-        print("Initializing historical data...")
-        initialize_historical_data(CUTOFF_DATE)
-    
-    # Calculate and save today's sentiment score
-    today_sentiment_score = calculate_combined_sentiment()
-    save_sentiment_to_csv(today_sentiment_score)
-    
-    # Plot the interactive sentiment chart
-    plot_interactive_sentiment()
-
-
-# In[130]:
-
-
-import plotly.graph_objects as go
-
+# Plot fear and greed gauge
 def plot_fear_greed_gauge(sentiment_score):
     # Define gauge chart with Bitcoin logo as indicator
     fig = go.Figure(go.Indicator(
@@ -538,66 +413,138 @@ def plot_fear_greed_gauge(sentiment_score):
         height=400,
         margin=dict(t=120, b=40, l=40, r=40)
     )
-    fig.write_html("/Users/tubaltheodros/Desktop/btc-fear-greed-index/index_index.html")
-    print("line_index.html has been created.")
+    
+    # Save to HTML file
+    fig.write_html("index_index.html")
+    print("✅ index_index.html has been created.")
+    
+    # Also display the chart if in an interactive environment
     fig.show()
 
-# Use the calculated sentiment score
-combined_sentiment_score = calculate_combined_sentiment()
-plot_fear_greed_gauge(combined_sentiment_score)
+# Push updates to GitHub
+def push_to_github():
+    repo_path = "/Users/tubaltheodros/Desktop/btc-fear-greed-index"  # Use explicit path
+    
+    try:
+        # Change to the repository directory
+        os.chdir(repo_path)
+        
+        # Pull the latest changes from the remote repository
+        os.system("git pull origin main")
+        
+        # Add, commit, and push updates
+        os.system("git add sentiment_scores.csv index_index.html line_index.html")
+        today_date = datetime.now().strftime('%Y-%m-%d')
+        os.system(f"git commit -m 'Updated sentiment data and visualizations for {today_date}'")
+        os.system("git push origin main")
+        
+        print("✅ Successfully pushed updates to GitHub.")
+    except Exception as e:
+        print(f"❌ Failed to push updates to GitHub: {e}")
 
+# Function to rebuild the dataset with complete history
+def rebuild_complete_dataset():
+    """
+    Rebuild the dataset with:
+    1. All alternative.me historical data
+    2. Preserve existing custom algorithm data for dates that have it
+    3. Ensure no gaps in the timeline
+    """
+    try:
+        # Check if we have existing data
+        try:
+            existing_df = pd.read_csv("sentiment_scores.csv")
+            has_existing_data = True
+            
+            # Backup the existing file just in case
+            existing_df.to_csv("sentiment_scores_backup.csv", index=False)
+            print("✅ Backed up existing data to sentiment_scores_backup.csv")
+            
+            # Filter to only keep custom algorithm data
+            custom_data = existing_df[existing_df["Source"].str.contains("custom", na=False)]
+            print(f"Found {len(custom_data)} records with custom algorithm data")
+        except FileNotFoundError:
+            has_existing_data = False
+            custom_data = pd.DataFrame(columns=["Date", "Sentiment Score", "Source"])
+            print("No existing data found, starting fresh")
+        
+        # Get all historical data from alternative.me
+        alt_me_data = fetch_historical_sentiment()
+        if alt_me_data is None or alt_me_data.empty:
+            print("❌ Failed to fetch alternative.me data")
+            return
+            
+        print(f"Fetched {len(alt_me_data)} records from alternative.me")
+        
+        # Convert dates to datetime for merging
+        alt_me_data["Date"] = pd.to_datetime(alt_me_data["Date"])
+        if not custom_data.empty:
+            custom_data["Date"] = pd.to_datetime(custom_data["Date"])
+        
+        # For each date that exists in custom_data, remove it from alt_me_data
+        if not custom_data.empty:
+            custom_dates = custom_data["Date"].dt.strftime("%Y-%m-%d").tolist()
+            alt_me_data = alt_me_data[~alt_me_data["Date"].dt.strftime("%Y-%m-%d").isin(custom_dates)]
+            
+        # Combine the datasets
+        combined_df = pd.concat([alt_me_data, custom_data], ignore_index=True)
+        
+        # Sort by date
+        combined_df = combined_df.sort_values("Date")
+        
+        # Save the combined dataset
+        combined_df.to_csv("sentiment_scores.csv", index=False)
+        print(f"✅ Rebuilt dataset with {len(combined_df)} total records")
+        
+        # Show summary of date range
+        oldest_date = combined_df["Date"].min().strftime("%Y-%m-%d")
+        newest_date = combined_df["Date"].max().strftime("%Y-%m-%d")
+        print(f"Dataset now spans from {oldest_date} to {newest_date}")
+        
+    except Exception as e:
+        print(f"❌ Error rebuilding dataset: {e}")
 
-# In[ ]:
-
-import os
-from datetime import datetime
-import pandas as pd
-import plotly.express as px
-
-# Your existing functions (clean_historical_data, calculate_combined_sentiment, save_sentiment_to_csv, etc.)
-
+# Main script execution
 if __name__ == "__main__":
-    # Step 1: Clean historical data
+    # Choose whether to use your algorithm or alternative.me data
+    USE_CUSTOM_ALGORITHM = True  # Set to False to always use alternative.me
+    
+    # Rebuild the complete dataset with no gaps
+    rebuild_complete_dataset()
+    
+    # Clean historical data
     clean_historical_data()
     
-    # Step 2: Calculate today's sentiment score
-    today_sentiment_score = calculate_combined_sentiment()
+    # Determine today's date
+    today = datetime.now().strftime("%Y-%m-%d")
     
-    # Step 3: Save today's sentiment score to CSV
+    # Get today's sentiment
+    if USE_CUSTOM_ALGORITHM:
+        print(f"Using custom algorithm for today's sentiment ({today})...")
+        today_sentiment_score = calculate_combined_sentiment()
+    else:
+        print(f"Using alternative.me for today's sentiment ({today})...")
+        # Get today's sentiment from alternative.me API
+        alt_me_index = fetch_fear_greed_index()
+        today_sentiment_score = alt_me_index
+    
+    # Save today's sentiment score
     save_sentiment_to_csv(today_sentiment_score)
     
-    # Step 4: Generate updated visualizations
-    plot_interactive_sentiment()  # Saves the updated plot to a file, like index.html
+    # Generate updated visualizations
+    plot_interactive_sentiment()
     plot_fear_greed_gauge(today_sentiment_score)
-    # Step 5: Push updated files to GitHub
     
-    
-    repo_path = "/Users/tubaltheodros/Desktop/btc-fear-greed-index"  # Your GitHub repo path
-
-try:
-    # Step: Pull the latest changes from the remote repository
-    os.system(f"git -C {repo_path} pull origin main")
-
-    # Then proceed with adding, committing, and pushing your updates:
-    os.system(f"git -C {repo_path} add sentiment_scores.csv index_index.html line_index.html")
-    os.system(f"git -C {repo_path} commit -m 'Updated sentiment data and visualizations'")
-    os.system(f"git -C {repo_path} push origin main")
-
-    print("✅ Successfully pushed updates to GitHub.")
-
-except Exception as e:
-    # Handle and display the error if something goes wrong
-    print(f"❌ Failed to push updates to GitHub: {e}")
-
-
-
-
-
-
-
-
-
-
-
-
+    # Push updates to GitHub
+    push_to_github()
+from textblob import TextBlob
+import pandas as pd
+import requests
+import numpy as np
+from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
+import os
+import plotly.express as px
+import plotly.graph_objects as go
+import time
 
