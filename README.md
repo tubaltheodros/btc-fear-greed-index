@@ -22,7 +22,7 @@ This index captures market sentiment by analyzing and weighting four key data so
 
 ### **Automation Framework**
 The system is fully automated with:
-- **Midnight UTC cron job scheduling** for daily updates
+- **Midnight PST cron job scheduling** for daily updates
 - **System reboot detection** for maintaining continuity
 - **GitHub integration** for version control and web hosting
 - **Robust error handling and logging**
