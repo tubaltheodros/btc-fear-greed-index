@@ -2,17 +2,20 @@ name: Daily Bitcoin Sentiment Update
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Run at midnight UTC every day
-  workflow_dispatch:  # Allow manual triggering from GitHub UI
+    - cron: '0 0 * * *'  # Run at midnight UTC
+  workflow_dispatch:  # Allow manual triggering
+
+permissions:
+  contents: write
 
 jobs:
-  update-sentiment:
+  update:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-        
+        uses: actions/checkout@v2
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -24,17 +27,14 @@ jobs:
           pip install praw pandas requests numpy bs4 plotly textblob
 
       - name: Run sentiment analysis
-        env:
-          # Add your Reddit API credentials as secrets in your GitHub repository
-          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
-          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-        run: |
-          python Bitcoin_FG_Index.py
-          
+        run: python Bitcoin_FG_Index.py
+
       - name: Commit and push changes
         run: |
           git config --global user.name 'GitHub Actions Bot'
           git config --global user.email 'actions@github.com'
-          git add sentiment_scores.csv index_index.html line_index.html
+          git add .
           git commit -m "Daily sentiment update for $(date +'%Y-%m-%d')" || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
