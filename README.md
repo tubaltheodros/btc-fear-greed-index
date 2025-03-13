@@ -41,4 +41,4 @@ The **Fear & Greed Index** reveals several interesting patterns:
 - **TextBlob**: Natural language processing for sentiment analysis
 - **Requests & BeautifulSoup**: Web scraping and API interactions
 - **Plotly**: Interactive data visualization
-- **Git**: Version control and deployment
+- **Git**: Version Control and Deployment
