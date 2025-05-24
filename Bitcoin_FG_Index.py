@@ -397,7 +397,7 @@ def plot_fear_greed_gauge(sentiment_score):
     fig.update_layout(
         images=[
             dict(
-                source="https://cryptologos.cc/logos/bitcoin-btc-logo.png",
+                source="https://raw.githubusercontent.com/tubaltheodros/btc-fear-greed-index/main/images/btc.png",
                 xref="paper",
                 yref="paper",
                 x=0.5,
