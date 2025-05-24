@@ -37,9 +37,16 @@ import plotly.graph_objects as go
 import time
 
 # Initialize Reddit API
+
+
+# Use environment variables for Reddit API credentials if available
+reddit_client_id = os.environ.get("REDDIT_CLIENT_ID", "GSl5ASGK24eNVwIKQAm8CQ")
+reddit_client_secret = os.environ.get("REDDIT_CLIENT_SECRET", "PmRh_hoFbgCrGOaEomX54-_QkYMfyQ")
+
+# Initialize Reddit API with these credentials
 reddit = praw.Reddit(
-    client_id="GSl5ASGK24eNVwIKQAm8CQ",
-    client_secret="PmRh_hoFbgCrGOaEomX54-_QkYMfyQ",
+    client_id=reddit_client_id,
+    client_secret=reddit_client_secret,
     user_agent="your_user_agent"
 )
 
