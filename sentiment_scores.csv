@@ -1,5 +1,4 @@
 Date,Sentiment Score,Source
-2024-11-13,84,alternative.me
 2024-11-14,88,alternative.me
 2024-11-15,80,alternative.me
 2024-11-16,86,alternative.me
@@ -364,3 +363,4 @@ Date,Sentiment Score,Source
 2025-11-10,40,custom_calculation
 2025-11-11,38,custom_calculation
 2025-11-12,38,custom_calculation
+2025-11-13,33,custom_calculation
